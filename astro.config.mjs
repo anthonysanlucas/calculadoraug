@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://calculadoraug.live',
+  site: 'https://calculadoraug.asanlucas.com',
   integrations: [sitemap()],
 });
