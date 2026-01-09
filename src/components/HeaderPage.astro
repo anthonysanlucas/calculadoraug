@@ -4,7 +4,9 @@ import Logo from '@/components/Logo.astro'
 
 <header class="header">
   <div class="header__inner">
-    <Logo />
+    <div class="header__logo">
+      <Logo />
+    </div>
 
     <nav class="tabs">
       <a href="/" id="partialgradePage" class="tab">Promedio Parcial</a>
@@ -17,7 +19,6 @@ import Logo from '@/components/Logo.astro'
   .header {
     width: 100%;
     background: var(--bg);
-    border-bottom: 1px solid var(--border);
   }
 
   .header__inner {
@@ -30,19 +31,23 @@ import Logo from '@/components/Logo.astro'
     gap: 16px;
   }
 
-  /* Tabs container */
+  /* Logo wrapper */
+  .header__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Tabs */
   .tabs {
     display: inline-flex;
     gap: 4px;
     padding: 4px;
     background: var(--surface-2);
-    border-radius: 999px; /* pill */
+    border-radius: 999px;
     border: 1px solid var(--border);
   }
 
-  /* Tab */
   .tab {
-    position: relative;
     padding: 8px 14px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -59,17 +64,36 @@ import Logo from '@/components/Logo.astro'
     color: var(--text);
   }
 
-  /* Active tab */
   .tab.active {
     background: var(--surface);
     color: var(--text);
     box-shadow: var(--shadow-sm);
   }
 
-  /* Focus (accesibilidad) */
   .tab:focus-visible {
     outline: none;
     box-shadow: var(--ring);
+  }
+
+  /* =========================
+   MOBILE
+   ========================= */
+  @media (max-width: 640px) {
+    .header__inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header__logo {
+      justify-content: center;
+    }
+
+    .tabs {
+      width: 100%;
+      justify-content: center;
+      border-radius: var(--radius);
+    }
   }
 </style>
 

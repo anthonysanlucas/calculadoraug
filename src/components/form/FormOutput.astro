@@ -1,29 +1,73 @@
 ---
 interface Props {
   id: string
+  label?: string
 }
 
-const { id } = Astro.props
+const { id, label = 'Resultado del cálculo' } = Astro.props
 ---
 
-<textarea class="form__output" id={id} cols="30" rows="1" placeholder="Resultado:" disabled>
-</textarea>
+<div class="result" data-empty>
+  <div class="result__header">
+    <span class="result__label">{label}</span>
+  </div>
+
+  <div class="result__value" id={id}>— —</div>
+
+  <div class="result__hint">Ingresa los valores y presiona calcular</div>
+</div>
 
 <style>
-  .form__output {
-    padding: 0.5rem;
+  .result {
     width: 100%;
-    max-width: 13rem;
-    height: 5.5rem;
-    background-color: var(--bg-gray);
-    color: var(--white-text);
-    font-weight: var(--regular-fw);
-    line-height: 1.5;
-    border: none;
-    border-radius: var(--b-radius);
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition:
+      border-color 150ms ease,
+      background 150ms ease;
   }
 
-  .form__output::placeholder {
-    color: var(--white-text);
+  /* Header */
+  .result__label {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Valor principal */
+  .result__value {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  /* Hint */
+  .result__hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+
+  /* Estado vacío */
+  .result[data-empty] {
+    background: var(--surface-2);
+  }
+
+  /* Cuando hay resultado */
+  .result.has-value {
+    border-style: solid;
+    background: #f8fafc; /* muy sutil */
+  }
+
+  .result.has-value .result__hint {
+    display: none;
   }
 </style>
+
+<script></script>

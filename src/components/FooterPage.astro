@@ -1,71 +1,87 @@
 <footer class="footer">
-  <nav>
-    <ul class="footer__links">
-      <li>
-        <a class="footer__link" href="https://servicioenlinea.ug.edu.ec/SIUG/" target="_blank"
-          >SIUG</a
-        >
-      </li>
-      <li>
-        <a class="footer__link" href="https://www.ug.edu.ec/" target="_blank"
-          >Universidad de Guayaquil</a
-        >
-      </li>
-      <li>
-        <a class="footer__link" href="https://campusvirtual.ug.edu.ec/" target="_blank"
-          >Campus Virtual</a
-        >
-      </li>
-    </ul>
-  </nav>
+  <div class="footer__inner">
+    <nav class="footer__nav">
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="https://servicioenlinea.ug.edu.ec/SIUG/" target="_blank">
+            SIUG
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.ug.edu.ec/" target="_blank">
+            Universidad de Guayaquil
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://campusvirtual.ug.edu.ec/" target="_blank">
+            Campus Virtual
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </footer>
 
 <style>
   .footer {
+    width: 100%;
+    padding: 24px 0;
+  }
+
+  .footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--pad-x);
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 75rem;
-    padding: 1rem;
-    margin: 0 auto;
   }
 
-  .footer nav {
-    max-width: 30rem;
-    width: 100%;
+  /* Barra clara */
+  .footer__nav {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
   }
 
+  /* Links */
   .footer__links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    gap: 18px;
     list-style: none;
-    padding-left: 0;
     margin: 0;
+    padding: 0;
+    align-items: center;
   }
 
   .footer__link {
-    display: block;
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-    font-size: var(--small-fs);
-    font-weight: var(--regular-fw);
-    color: var(--gray-text-light);
-    text-decoration: underline;
-    text-underline-offset: 0.1rem;
-    transition: color 0.2s ease;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition:
+      background 120ms ease,
+      color 120ms ease;
   }
 
   .footer__link:hover {
-    color: var(--primary-color-light);
+    background: var(--surface);
+    color: var(--text);
   }
 
-  @media (max-width: 32rem) {
+  /* Mobile */
+  @media (max-width: 520px) {
+    .footer__nav {
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
     .footer__links {
-      flex-direction: column;
-      align-items: start;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
     }
   }
 </style>

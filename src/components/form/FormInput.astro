@@ -42,6 +42,9 @@ const { id, labelName, isRequired } = Astro.props
 <style>
   .input {
     position: relative;
+    background-color: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
   }
 
   .input__area {
@@ -49,13 +52,9 @@ const { id, labelName, isRequired } = Astro.props
     padding: 3rem 10px 0.8rem 0.5rem;
     border: none;
     outline: none;
-    border-top-right-radius: var(--b-radius);
-    border-top-left-radius: var(--b-radius);
     border-bottom: 1px solid var(--gray-300);
     height: 3rem;
     width: 100%;
-    max-width: 13rem;
-    min-width: 9rem;
     background-color: transparent;
     color: var(--white-text);
     transition: border-color 0.2s ease-in-out;
