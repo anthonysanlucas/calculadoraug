@@ -2,97 +2,83 @@
 import Logo from '@/components/Logo.astro'
 ---
 
-<header class="headerPage">
-  <Logo />
-  <nav class="nav">
-    <ul class="nav__links">
-      <li>
-        <a href="/" id="partialgradePage" class="nav__link">Promedio Parcial</a>
-      </li>
-      <li>
-        <a href="/calificacion-final/" id="finalgradePage" class="nav__link">Calificación Final</a>
-      </li>
-    </ul>
-  </nav>
+<header class="header">
+  <div class="header__inner">
+    <Logo />
+
+    <nav class="tabs">
+      <a href="/" id="partialgradePage" class="tab">Promedio Parcial</a>
+      <a href="/calificacion-final/" id="finalgradePage" class="tab">Calificación Final</a>
+    </nav>
+  </div>
 </header>
 
 <style>
-  .headerPage {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+  .header {
     width: 100%;
-    max-width: 75rem;
-    padding: 2rem 1rem 1rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header__inner {
+    max-width: var(--container);
     margin: 0 auto;
-  }
-
-  .headerPage nav {
-    width: 100%;
-  }
-
-  .nav__links {
+    padding: 16px var(--pad-x);
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding-left: 0;
-    margin: 0;
+    justify-content: space-between;
+    gap: 16px;
   }
 
-  .nav__links li {
-    list-style: none;
+  /* Tabs container */
+  .tabs {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--surface-2);
+    border-radius: 999px; /* pill */
+    border: 1px solid var(--border);
   }
 
-  .nav__link {
-    display: block;
+  /* Tab */
+  .tab {
+    position: relative;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    border-radius: 999px;
     text-decoration: none;
-    text-align: center;
-    color: var(--white-text);
-    font-weight: var(--medium-fw);
-    font-size: var(--small-fs);
-    padding: 0.75rem;
-    border-radius: var(--b-radius);
-    transition: background 0.2s ease;
+    transition:
+      background 120ms ease,
+      color 120ms ease,
+      box-shadow 120ms ease;
   }
 
-  .nav__link:hover {
-    background-color: var(--bg-gray);
+  .tab:hover {
+    color: var(--text);
   }
 
-  .nav__link.active-page {
-    color: var(--primary-color-light);
+  /* Active tab */
+  .tab.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
   }
 
-  @media (min-width: 34.375rem) {
-    .headerPage {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .headerPage nav {
-      width: fit-content;
-    }
-  }
-
-  @media (min-width: 21.875rem) {
-    .nav__link {
-      font-size: var(--regular-fs);
-      padding: 1rem;
-    }
+  /* Focus (accesibilidad) */
+  .tab:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
   }
 </style>
 
 <script>
-  const partialgradePage = document.getElementById('partialgradePage') as HTMLAnchorElement
-  const finalgradePage = document.getElementById('finalgradePage') as HTMLAnchorElement
-  const pageMappings = {
-    '/': partialgradePage,
-    '/calificacion-final/': finalgradePage
+  const tabs = {
+    '/': document.getElementById('partialgradePage'),
+    '/calificacion-final/': document.getElementById('finalgradePage')
   }
 
-  const currentPage = pageMappings[window.location.pathname]
-
-  if (currentPage) currentPage.classList.add('active-page')
+  const current = tabs[window.location.pathname]
+  if (current) current.classList.add('active')
 </script>
